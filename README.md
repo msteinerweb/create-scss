@@ -24,9 +24,6 @@ You can configure the path to the main SCSS file through the extension settings.
 "create-scss-file.mainScssFilePath": "path/to/your/main/scss/file.scss"
 ```
 
-## Known Issues
-None at the moment.
-
 ## Release Notes
-0.0.1
+0.0.2
 Initial release of Create SCSS File extension.
