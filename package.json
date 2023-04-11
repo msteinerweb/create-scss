@@ -1,0 +1,77 @@
+{
+	"name": "create-scss-file",
+	"displayName": "Create SCSS File",
+	"description": "A simple extension to create an SCSS files associated with an HTML tag's data",
+	"version": "0.0.2",
+	"publisher": "Matt Steiner",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.60.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.createScssFile"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.createScssFile",
+				"title": "Create SCSS File from Tag Data..."
+			},
+			{
+			  "command": "extension.setMainScssFile",
+			  "title": "Set as Main SCSS File"
+			}
+		],
+		"configuration": {
+			"title": "Create SCSS File",
+			"properties": {
+				"create-scss-file.mainScssFilePath": {
+					"type": "string",
+					"default": "src/assets/scss/style.scss",
+					"description": "Path to the main SCSS file, relative to the project root."
+				}
+			}
+		},
+		"menus": {
+			"editor/context": [
+				{
+					"command": "extension.createScssFile",
+					"group": "1_modification",
+					"when": "resourceScheme == file && (editorLangId == html || editorLangId == php || editorLangId == handlebars || editorLangId == ejs || editorLangId == django-html)"
+				}
+			],
+			"explorer/context": [
+				{
+				  "command": "extension.setMainScssFile",
+				  "group": "1_modification",
+				  "when": "resourceScheme == file && resourceExtname == .scss"
+				}
+			  ]
+		},
+		"keybindings": [
+			{
+				"command": "extension.createScssFile",
+				"key": "ctrl+alt+y",
+				"when": "resourceScheme == file && (editorLangId == html || editorLangId == php || editorLangId == handlebars || editorLangId == ejs || editorLangId == django-html)"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts"
+	},
+	"devDependencies": {
+		"@types/node": "^14.17.32",
+		"@types/vscode": "^1.60.0",
+		"eslint": "^7.32.0",
+		"typescript": "^4.4.3",
+		"vscode-test": "^1.6.2"
+	}
+}
